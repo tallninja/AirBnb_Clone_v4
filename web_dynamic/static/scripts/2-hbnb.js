@@ -10,4 +10,12 @@ $(function () {
     } else amenities.push(amenityId);
     console.log(amenities);
   });
+
+  const URL = 'http://0.0.0.0:5001/api/v1/status/';
+  const apiStatus = $('#api_status');
+
+  $.get(URL, (res, status) => {
+    if (res.status === 'OK') apiStatus.addClass('available');
+    else apiStatus.removeClass('available');
+  });
 });
