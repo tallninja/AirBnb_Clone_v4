@@ -48,7 +48,7 @@ $(function () {
         $.post(
             {
                 url: pURL,
-                data: {},
+                data: '{"amenities": ['+ $.map(checkedAmenities, function (key, amenityName) { return '"'+amenityName+'"'; }).join(', ') +']}',
                 dataType: 'json',
                 contentType: 'application/json'
             }
