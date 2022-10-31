@@ -42,6 +42,32 @@ $(function () {
 
             $('section.places').append(article);
         })
+    });
+
+    $('button').click(function (){
+        $.post(
+            {
+                url: pURL,
+                data: {},
+                dataType: 'json',
+                contentType: 'application/json'
+            }
+        ).done((res) =>{
+            // console.log(res);
+            $.each(res, (key, place) =>{
+                const desc = $('<div class="description"></div>').html(place.description);
+                const numofRooms = $('<div class="number_rooms"></div>').text(place.number_rooms);
+                const maxGuest = $('<div class="max_guest"></div>').text(place.max_guest);
+                const numofBath = $('<div class="number_bathrooms"></div>').text(place.number_bathrooms);
+                const name = $('<h2 class="name"></h2>').text(place.name);
+                const priceByNight = $('<div class="price_by_night"></div>').text(place.price_by_night);
+                const titleBx = $('<div class="title_box"></div>').append(name).append(priceByNight);
+                const infor = $('<div class="information"></div>').append(maxGuest).append(numofRooms).append(numofBath);
+                const article = $('<article></article>').append(titleBx).append(infor).append(desc);
+    
+                $('section.places').append(article);
+            })
+        });
     })
   });
   
